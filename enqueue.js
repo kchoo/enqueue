@@ -7,19 +7,19 @@ const sqsSendMessageQ = $q.promisify(sqs.sendMessage, sqs);
 
 const queuePrefix = 'kchoo-media-aggregator';
 
-module.exports = function (name, ...message) {
-	return function (...error) {
+module.exports = function (name, ...userMessage) {
+	return function (...sourceMessage) {
 		return sqsGetQueueUrlQ({
 				QueueName: `${queuePrefix}-${name}`
 			}).
 			then(function ({QueueUrl}) {
 				return sqsSendMessageQ({
-					MessageBody: JSON.stringify(message.concat(error)),
+					MessageBody: JSON.stringify(userNessage.concat(sourceMessage)),
 					QueueUrl
 				});
 			}).
 			then(function () {
-				return message;
+				return userNessage.concat(sourceMessage);
 			});
 	};
 };
