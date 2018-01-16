@@ -14,12 +14,12 @@ module.exports = function (name, ...userMessage) {
 			}).
 			then(function ({QueueUrl}) {
 				return sqsSendMessageQ({
-					MessageBody: JSON.stringify(userNessage.concat(sourceMessage)),
+					MessageBody: JSON.stringify(userMessage.concat(sourceMessage)),
 					QueueUrl
 				});
 			}).
 			then(function () {
-				return userNessage.concat(sourceMessage);
+				return userMessage.concat(sourceMessage);
 			});
 	};
 };
