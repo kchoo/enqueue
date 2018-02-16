@@ -1,13 +1,5 @@
 # enqueue
 
-Wrapper around AWS's node.js SDK for SQS
+Deprecated
 
-## Usage
-
-```
-const enqueue = require('kchoo-enqueue');
-
-asyncFunction(params).
-  then(enqueue('queue-for-function-success', 'Function successed and returned:')).
-  catch(enqueue('queue-for-function-failure'));
-```
+This will be replaced by a message broker found at the base of every lambda cluster
